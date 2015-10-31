@@ -195,17 +195,20 @@
         }
         return Won;
     }
-
-    
     
 
-    if (continueFlag == YES) {
+    if (continueFlag == YES && [self isResultPossible]) {
         return Continue;
     }
     else
     {
         return Drawn;
     }
+}
+
+- (BOOL)isResultPossible // Tracking if Game to be played further or already drawn
+{
+    return YES;
 }
 
 @end

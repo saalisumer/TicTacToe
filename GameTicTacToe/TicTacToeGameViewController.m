@@ -130,10 +130,10 @@
     }
     else if (gameResult == Continue)
     {
+        userGameResult = Continue;
         if (playerType == PlayerTypeHuman) {
             [mGameController initiateNextComputerMove];
         }
-        userGameResult = Continue;
     }
     else
     {
