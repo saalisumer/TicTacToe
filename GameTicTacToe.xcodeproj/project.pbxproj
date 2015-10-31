@@ -19,6 +19,7 @@
 		9C8203531BE3C8BE00F59070 /* BoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8203521BE3C8BE00F59070 /* BoardCell.m */; };
 		9C8203561BE3CC8800F59070 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8203551BE3CC8800F59070 /* QuartzCore.framework */; };
 		9C8203591BE3CE0200F59070 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8203581BE3CE0200F59070 /* GameController.m */; };
+		9CBDC7491BE5158600056E09 /* GameHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBDC7481BE5158600056E09 /* GameHistoryViewController.m */; };
 		9CF9DF961BE3AD7400B42D5F /* ApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF9DF951BE3AD7400B42D5F /* ApplicationModel.m */; };
 		9CF9DF9F1BE3BC3A00B42D5F /* SizeSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF9DF9E1BE3BC3A00B42D5F /* SizeSelectorViewController.m */; };
 		9CF9DFA21BE3BD4F00B42D5F /* NSString+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF9DFA11BE3BD4F00B42D5F /* NSString+Utility.m */; };
@@ -56,6 +57,8 @@
 		9C8203551BE3CC8800F59070 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C8203571BE3CE0200F59070 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		9C8203581BE3CE0200F59070 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		9CBDC7471BE5158600056E09 /* GameHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryViewController.h; sourceTree = "<group>"; };
+		9CBDC7481BE5158600056E09 /* GameHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryViewController.m; sourceTree = "<group>"; };
 		9CF9DF941BE3AD7400B42D5F /* ApplicationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationModel.h; sourceTree = "<group>"; };
 		9CF9DF951BE3AD7400B42D5F /* ApplicationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationModel.m; sourceTree = "<group>"; };
 		9CF9DF9D1BE3BC3A00B42D5F /* SizeSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeSelectorViewController.h; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				9CF9DFA51BE3BEF800B42D5F /* RootNavigationController.m */,
 				9C8203571BE3CE0200F59070 /* GameController.h */,
 				9C8203581BE3CE0200F59070 /* GameController.m */,
+				9CBDC7471BE5158600056E09 /* GameHistoryViewController.h */,
+				9CBDC7481BE5158600056E09 /* GameHistoryViewController.m */,
 				9C39C2811BE2B9E800394E4F /* Main.storyboard */,
 				9C8203541BE3C8C500F59070 /* BoardCell */,
 				9C39C2841BE2B9E800394E4F /* Images.xcassets */,
@@ -274,6 +279,7 @@
 				9CF9DF9F1BE3BC3A00B42D5F /* SizeSelectorViewController.m in Sources */,
 				9CF9DF961BE3AD7400B42D5F /* ApplicationModel.m in Sources */,
 				9C8203591BE3CE0200F59070 /* GameController.m in Sources */,
+				9CBDC7491BE5158600056E09 /* GameHistoryViewController.m in Sources */,
 				9C39C2771BE2B9E800394E4F /* main.m in Sources */,
 				9C8203531BE3C8BE00F59070 /* BoardCell.m in Sources */,
 				9CF9DFA61BE3BEF800B42D5F /* RootNavigationController.m in Sources */,

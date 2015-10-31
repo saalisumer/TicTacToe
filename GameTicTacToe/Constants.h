@@ -12,6 +12,10 @@
 #define kGameBoardVCIdentifier @"GAMEBOARD"
 #define kBOARDCELLIdentifier @"BOARDCELL"
 
+#define kResultWins @"Wins"
+#define kResultLosses @"Losses"
+#define kResultDraws @"Draws"
+
 #define kMinBoardSize 3
 #define kMaxBoardSize 7
 

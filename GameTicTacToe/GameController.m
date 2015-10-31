@@ -168,7 +168,7 @@
     computerWon = YES;
     for (int p = 0; p<mApplicationModel.sizeBoard; p++) {// Checking Diagonals
         
-        NSNumber *number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%d%lu",p,mApplicationModel.sizeBoard-p-1]];
+        NSNumber *number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%d%u",p,mApplicationModel.sizeBoard-p-1]];
         if (number.integerValue == PlayerTypeHuman) {
             computerWon = NO;
         }

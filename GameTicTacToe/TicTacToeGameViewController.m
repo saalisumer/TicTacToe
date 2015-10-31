@@ -117,24 +117,33 @@
 #pragma mark GameDelegate
 -(void)gameResult:(GameResult)gameResult withPlayer:(PlayerType)playerType
 {
+    GameResult userGameResult;
     if ((gameResult == Won && playerType == PlayerTypeHuman) || (gameResult == Lost && playerType == PlayerTypeComputer)) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"You Won" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        userGameResult = Won;
     }
     else if (gameResult == Drawn) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Game Drawn" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        userGameResult = Drawn;
     }
     else if (gameResult == Continue)
     {
         if (playerType == PlayerTypeHuman) {
             [mGameController initiateNextComputerMove];
         }
+        userGameResult = Continue;
     }
     else
     {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Game Lost" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        userGameResult = Lost;
+    }
+    
+    if (userGameResult != Continue) {//log completed games
+        [mApplicationModel logGameResult:userGameResult];
     }
 }
 

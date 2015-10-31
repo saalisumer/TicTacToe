@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameController.h"
 
 @interface ApplicationModel : NSObject
 @property (nonatomic, assign) NSUInteger sizeBoard;
 @property (nonatomic, strong) NSMutableDictionary * gameState;
 + (ApplicationModel* )sharedInstance;
 - (void)clearSession;
+- (void)logGameResult:(GameResult)result;
+- (NSMutableDictionary*)getGameResultHistory;
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fho-zB-Jpv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pLt-Cv-Bl3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ovD-w0-5uQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="281"/>
+            <point key="canvasLocation" x="1558" y="281"/>
         </scene>
         <!--Tic Tac Toe Game View Controller-->
         <scene sceneID="C8H-Ld-ylP">
@@ -78,6 +78,7 @@
                                     <constraint firstAttribute="width" secondItem="ZMs-Cd-N1D" secondAttribute="height" multiplier="1:1" id="EwX-XR-MWH"/>
                                     <constraint firstAttribute="width" secondItem="ZMs-Cd-N1D" secondAttribute="height" multiplier="19:14" id="LoL-Gb-FnX"/>
                                     <constraint firstAttribute="width" constant="500" id="kVV-9G-abF"/>
+                                    <constraint firstAttribute="width" secondItem="ZMs-Cd-N1D" secondAttribute="height" multiplier="1:1" id="oga-o7-wk7"/>
                                     <constraint firstAttribute="width" secondItem="ZMs-Cd-N1D" secondAttribute="height" multiplier="1:1" id="zmc-cR-0ne"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DiC-YV-mEC">
@@ -180,12 +181,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vRo-Od-Ra3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="273"/>
+            <point key="canvasLocation" x="2214" y="273"/>
         </scene>
-        <!--Root Navigation Controller-->
+        <!--Play Game-->
         <scene sceneID="Joh-9O-uid">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fho-zB-Jpv" customClass="RootNavigationController" sceneMemberID="viewController">
+                <navigationController title="Play Game" automaticallyAdjustsScrollViewInsets="NO" id="fho-zB-Jpv" customClass="RootNavigationController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Play Game" id="Phe-ji-hnm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VPp-Lm-8Fa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -198,7 +200,112 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ev-bT-V0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="746" y="281"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="rgB-sa-mDx">
+            <objects>
+                <tabBarController title="History" automaticallyAdjustsScrollViewInsets="NO" id="pLt-Cv-Bl3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="vDr-W5-ywf">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="fho-zB-Jpv" kind="relationship" relationship="viewControllers" id="KEh-bQ-5mM"/>
+                        <segue destination="U2z-3t-e7C" kind="relationship" relationship="viewControllers" id="1WR-F1-a5L"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5l0-kO-L5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-66" y="281"/>
+        </scene>
+        <!--Results-->
+        <scene sceneID="ndm-UX-s07">
+            <objects>
+                <viewController id="U2z-3t-e7C" customClass="GameHistoryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jlO-1H-elY"/>
+                        <viewControllerLayoutGuide type="bottom" id="HdI-81-4J2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3wa-rX-15w">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiH-eS-dtR">
+                                <rect key="frame" x="108" y="130" width="385" height="340"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Losses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuM-du-bKy">
+                                        <rect key="frame" x="140" y="117" width="104" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="104" id="iT3-RL-GQC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draws" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS0-9W-HoR">
+                                        <rect key="frame" x="140" y="146" width="104" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="104" id="0x3-Sd-Nlq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NT-Y1-lYQ">
+                                        <rect key="frame" x="140" y="88" width="104" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="GMS-8t-rT0"/>
+                                            <constraint firstAttribute="width" constant="104" id="PGP-MO-RBw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="9NT-Y1-lYQ" firstAttribute="leading" secondItem="wiH-eS-dtR" secondAttribute="leading" constant="140" id="41D-Ft-28F"/>
+                                    <constraint firstItem="9NT-Y1-lYQ" firstAttribute="top" secondItem="wiH-eS-dtR" secondAttribute="top" constant="88" id="AMz-Rb-PAi"/>
+                                    <constraint firstItem="nS0-9W-HoR" firstAttribute="top" secondItem="QuM-du-bKy" secondAttribute="bottom" constant="8" id="QJa-WE-zcc"/>
+                                    <constraint firstItem="QuM-du-bKy" firstAttribute="leading" secondItem="9NT-Y1-lYQ" secondAttribute="leading" id="QQD-6f-hxh"/>
+                                    <constraint firstItem="nS0-9W-HoR" firstAttribute="leading" secondItem="QuM-du-bKy" secondAttribute="leading" id="WEr-2s-DAl"/>
+                                    <constraint firstAttribute="height" constant="340" id="afm-zp-Gy5"/>
+                                    <constraint firstAttribute="width" constant="385" id="vzR-O8-sgx"/>
+                                    <constraint firstItem="QuM-du-bKy" firstAttribute="top" secondItem="9NT-Y1-lYQ" secondAttribute="bottom" constant="8" id="z7F-PG-HC6"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Played:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGz-eC-uje">
+                                <rect key="frame" x="248" y="310" width="104" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="ITA-6Z-LkB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nS0-9W-HoR" firstAttribute="leading" secondItem="RGz-eC-uje" secondAttribute="leading" id="DJD-vj-q7G"/>
+                            <constraint firstItem="RGz-eC-uje" firstAttribute="top" secondItem="nS0-9W-HoR" secondAttribute="bottom" constant="13" id="IqY-Bt-H0x"/>
+                            <constraint firstAttribute="centerY" secondItem="wiH-eS-dtR" secondAttribute="centerY" id="Uo5-d1-4XY"/>
+                            <constraint firstAttribute="centerX" secondItem="wiH-eS-dtR" secondAttribute="centerX" constant="-0.5" id="gx3-kC-p6K"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Results" id="v2e-Qu-Sh9"/>
+                    <connections>
+                        <outlet property="lblDraws" destination="nS0-9W-HoR" id="jb1-zt-Nhz"/>
+                        <outlet property="lblLosses" destination="QuM-du-bKy" id="KKt-hW-Tgx"/>
+                        <outlet property="lblTotalCompletedGames" destination="RGz-eC-uje" id="x1p-uk-foA"/>
+                        <outlet property="lblWins" destination="9NT-Y1-lYQ" id="yl9-f9-XUv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5QI-m7-gft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="972"/>
         </scene>
     </scenes>
 </document>
