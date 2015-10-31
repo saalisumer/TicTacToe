@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSMutableDictionary * gameState;
 + (ApplicationModel* )sharedInstance;
 - (void)clearSession;
-- (void)logGameResult:(GameResult)result;
+- (void)logGameResult:(GameResult)result withLastTurn:(PlayerType)player;
 - (NSMutableDictionary*)getGameResultHistory;
+- (PlayerType)nextTurnPlayer;
+- (void)setNextPlayer:(PlayerType)player;
 @end

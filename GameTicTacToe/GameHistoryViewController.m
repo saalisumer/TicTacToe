@@ -42,10 +42,10 @@
     NSUInteger wins = [[gameHistoryResult valueForKey:kResultWins] integerValue];
     NSUInteger losses = [[gameHistoryResult valueForKey:kResultLosses] integerValue];
     NSUInteger draws = [[gameHistoryResult valueForKey:kResultDraws] integerValue];
-    self.lblWins.text = [NSString stringWithFormat:@"Wins: %d",wins];
-    self.lblLosses.text = [NSString stringWithFormat:@"Losses: %d",losses];
-    self.lblDraws.text = [NSString stringWithFormat:@"Draws: %d",draws];
-    self.lblTotalCompletedGames.text = [NSString stringWithFormat:@"Total: %d", wins+losses+draws];
+    self.lblWins.text = [NSString stringWithFormat:@"Wins: %lu",(unsigned long)wins];
+    self.lblLosses.text = [NSString stringWithFormat:@"Losses: %lu",(unsigned long)losses];
+    self.lblDraws.text = [NSString stringWithFormat:@"Draws: %lu",(unsigned long)draws];
+    self.lblTotalCompletedGames.text = [NSString stringWithFormat:@"Total: %u", wins+losses+draws];
 }
 
 

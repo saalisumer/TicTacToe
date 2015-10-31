@@ -54,9 +54,10 @@
 - (void)clearSession
 {
     [self initializeAll];
+    [self initializeBoard:_sizeBoard];
 }
 
-- (void)logGameResult:(GameResult)result
+- (void)logGameResult:(GameResult)result withLastTurn:(PlayerType)player
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (result == Won) {
@@ -66,9 +67,10 @@
         }
         else
         {
-            number = [NSNumber numberWithInt:(number.integerValue + 1)];
+            number = [NSNumber numberWithInteger:(number.integerValue + 1)];
         }
         [userDefaults setValue:number forKey:kResultWins];
+        [userDefaults setValue:[NSNumber numberWithInteger:PlayerTypeHuman] forKey:kKeyNextTurn];
     }
     else if (result == Lost) {
         NSNumber * number = [userDefaults valueForKey:kResultLosses];
@@ -77,9 +79,10 @@
         }
         else
         {
-            number = [NSNumber numberWithInt:(number.integerValue + 1)];
+            number = [NSNumber numberWithInteger:(number.integerValue + 1)];
         }
         [userDefaults setValue:number forKey:kResultLosses];
+        [userDefaults setValue:[NSNumber numberWithInteger:PlayerTypeComputer] forKey:kKeyNextTurn];
     }
     else if (result == Drawn) {
         NSNumber * number = [userDefaults valueForKey:kResultDraws];
@@ -88,10 +91,13 @@
         }
         else
         {
-            number = [NSNumber numberWithInt:(number.integerValue + 1)];
+            number = [NSNumber numberWithInteger:(number.integerValue + 1)];
         }
         [userDefaults setValue:number forKey:kResultDraws];
+        [userDefaults setValue:[NSNumber numberWithInteger:player] forKey:kKeyNextTurn];
     }
+    
+    
     [userDefaults synchronize];
 }
 
@@ -119,5 +125,26 @@
     [dictionary setValue:losses forKey:kResultLosses];
     [dictionary setValue:draws forKey:kResultDraws];
     return dictionary;
+}
+
+- (PlayerType)nextTurnPlayer
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber * nextTurnPlayer = [userDefaults valueForKey:kKeyNextTurn];
+
+    if (!nextTurnPlayer) {
+        return PlayerTypeHuman;
+    }
+    else
+    {
+        return (PlayerType)nextTurnPlayer.integerValue;
+    }
+}
+
+- (void)setNextPlayer:(PlayerType)player
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:[NSNumber numberWithInteger:player] forKey:kKeyNextTurn];
+    [userDefaults synchronize];
 }
 @end

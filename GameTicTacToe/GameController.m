@@ -51,11 +51,11 @@
     NSNumber * anyCell;
     id randomKey;
     NSArray* allKeys = [mApplicationModel.gameState allKeys];
-    randomKey = allKeys[arc4random_uniform([allKeys count])];
+    randomKey = allKeys[arc4random_uniform((UInt32)[allKeys count])];
     anyCell = mApplicationModel.gameState[randomKey];
     
     while (anyCell.integerValue != PlayerTypeNone) {
-        randomKey = allKeys[arc4random_uniform([allKeys count])];
+        randomKey = allKeys[arc4random_uniform((UInt32)[allKeys count])];
         anyCell = mApplicationModel.gameState[randomKey];
     }
     
@@ -198,6 +198,13 @@
     
 
     if (continueFlag == YES && [self isResultPossible]) {
+        if (playerType == PlayerTypeComputer) {
+            [mApplicationModel setNextPlayer:PlayerTypeHuman];
+        }
+        else if (playerType == PlayerTypeHuman)
+        {
+            [mApplicationModel setNextPlayer:PlayerTypeComputer];
+        }
         return Continue;
     }
     else

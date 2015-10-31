@@ -16,6 +16,11 @@
 #define kResultLosses @"Losses"
 #define kResultDraws @"Draws"
 
+#define kKeyNextTurn @"NextTurn"
+
+#define kComputersTurn @"Computer's Turn"
+#define kUserTurn @"Your Turn"
+
 #define kMinBoardSize 3
 #define kMaxBoardSize 7
 

@@ -10,6 +10,7 @@
 
 @interface TicTacToeGameViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
+@property (nonatomic, weak) IBOutlet UILabel          * lblPlayer;
 
 @end
 

@@ -12,6 +12,10 @@
 #import "Constants.h"
 #import "GameController.h"
 
+#define kAlertTagWon 101
+#define kAlertTagLost 102
+#define kAlertTagDrawn 103
+
 @interface TicTacToeGameViewController ()<GameDelegate, UIAlertViewDelegate>
 {
     ApplicationModel * mApplicationModel;
@@ -27,13 +31,45 @@
     mGameController.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [_collectionView registerNib:[UINib nibWithNibName:@"BoardCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kBOARDCELLIdentifier];
+    [self validateLabel];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(animateLabel) userInfo:nil repeats:YES];
+    [self makeNextComputerMoveIfNeeded];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)animateLabel
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.lblPlayer.alpha = 0;
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.lblPlayer.alpha = 1;
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refresh
+{
+    [self validateLabel];
+    [self.collectionView reloadData];
+}
+
+-(void)validateLabel
+{
+    if (mApplicationModel.nextTurnPlayer == PlayerTypeHuman) {
+        self.lblPlayer.text = kUserTurn;
+    }
+    else if (mApplicationModel.nextTurnPlayer == PlayerTypeComputer)
+    {
+        self.lblPlayer.text = kComputersTurn;
+    }
 }
 
 #pragma mark UICollectionView methods
@@ -88,7 +124,7 @@
     long row = indexPath.item/mApplicationModel.sizeBoard;
     long column = indexPath.item%mApplicationModel.sizeBoard;
     NSNumber * number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%lu%lu",row,column]];
-    if (number.integerValue == PlayerTypeNone) {
+    if (number.integerValue == PlayerTypeNone && mApplicationModel.nextTurnPlayer == PlayerTypeHuman) {
         return YES;
     }
     return NO;
@@ -99,7 +135,6 @@
     long row = indexPath.item/mApplicationModel.sizeBoard;
     long column = indexPath.item%mApplicationModel.sizeBoard;
     [mGameController gameTurnPlayed:[NSString stringWithFormat:@"%lu%lu",row,column] withPlayer:PlayerTypeHuman];
-    [self.collectionView reloadData];
 }
 
 #pragma mark Interface orientation change
@@ -110,8 +145,8 @@
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
 
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        [self.collectionView reloadData];
-          }];
+        [self refresh];
+    }];
 }
 
 #pragma mark GameDelegate
@@ -119,31 +154,44 @@
 {
     GameResult userGameResult;
     if ((gameResult == Won && playerType == PlayerTypeHuman) || (gameResult == Lost && playerType == PlayerTypeComputer)) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"You Won" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"You Won" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Restart",nil];
+        alert.tag = kAlertTagWon;
         [alert show];
         userGameResult = Won;
     }
     else if (gameResult == Drawn) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Game Drawn" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Game Drawn" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Restart",nil];
+        alert.tag = kAlertTagDrawn;
         [alert show];
         userGameResult = Drawn;
     }
     else if (gameResult == Continue)
     {
+        [self makeNextComputerMoveIfNeeded];
         userGameResult = Continue;
-        if (playerType == PlayerTypeHuman) {
-            [mGameController initiateNextComputerMove];
-        }
     }
     else
     {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Game Lost" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Game Lost" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Restart",nil];
+        alert.tag = kAlertTagLost;
         [alert show];
         userGameResult = Lost;
     }
     
+    
     if (userGameResult != Continue) {//log completed games
-        [mApplicationModel logGameResult:userGameResult];
+        [mApplicationModel logGameResult:userGameResult withLastTurn:playerType];
+    }
+    [self refresh];
+
+}
+
+-(void)makeNextComputerMoveIfNeeded
+{
+    if (mApplicationModel.nextTurnPlayer == PlayerTypeComputer) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [mGameController initiateNextComputerMove];
+        });
     }
 }
 
@@ -153,7 +201,14 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [mApplicationModel clearSession];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (buttonIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if(buttonIndex == 1)
+    {
+        [self refresh];
+        [self makeNextComputerMoveIfNeeded];
+    }
     
 }
 @end
