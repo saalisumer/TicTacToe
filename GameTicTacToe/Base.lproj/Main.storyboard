@@ -76,7 +76,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZMs-Cd-N1D" secondAttribute="height" multiplier="1:1" id="heW-L2-1o0"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DiC-YV-mEC">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DiC-YV-mEC">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>

@@ -25,6 +25,7 @@
     mApplicationModel = [ApplicationModel sharedInstance];
     mGameController = [GameController sharedInstance];
     mGameController.delegate = self;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [_collectionView registerNib:[UINib nibWithNibName:@"BoardCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kBOARDCELLIdentifier];
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -57,6 +58,7 @@
     CGFloat size = collectionView.bounds.size.width/mApplicationModel.sizeBoard;
     return CGSizeMake(size,size);
 }
+
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 0;
@@ -65,6 +67,20 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 0;
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsZero;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(0,0);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    return CGSizeMake(0,0);
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
