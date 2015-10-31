@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BOARDCELL" id="BPg-Wa-T7F" customClass="BoardCell">
+            <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="udL-H5-UOj">
+                        <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="udL-H5-UOj" secondAttribute="bottom" id="N8P-lu-U2I"/>
+                <constraint firstAttribute="trailing" secondItem="udL-H5-UOj" secondAttribute="trailing" id="VeJ-Tc-PcZ"/>
+                <constraint firstItem="udL-H5-UOj" firstAttribute="top" secondItem="BPg-Wa-T7F" secondAttribute="top" id="aFy-Oc-CB0"/>
+                <constraint firstItem="udL-H5-UOj" firstAttribute="leading" secondItem="BPg-Wa-T7F" secondAttribute="leading" id="pV9-tR-T12"/>
+            </constraints>
+            <size key="customSize" width="137" height="147"/>
+            <connections>
+                <outlet property="imageView" destination="udL-H5-UOj" id="Wnw-JZ-mxj"/>
+            </connections>
+            <point key="canvasLocation" x="408.5" y="8.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="1" width="90" height="90"/>
+    </resources>
+</document>
