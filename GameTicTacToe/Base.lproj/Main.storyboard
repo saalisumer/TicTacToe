@@ -43,11 +43,11 @@
                                     <action selector="didTapProceed:" destination="jUX-5H-IKB" eventType="touchUpInside" id="7Cc-Ug-XZk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specify Size of Tic Tac Toe Game Board (between 3 to 7)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-yW-BVt">
-                                <rect key="frame" x="124" y="120" width="353" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specify Size of Tic Tac Toe Game Board (between 3 to 7)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-yW-BVt">
+                                <rect key="frame" x="160" y="88" width="280" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="353" id="VLN-PT-7uI"/>
-                                    <constraint firstAttribute="height" constant="21" id="amZ-JO-HXN"/>
+                                    <constraint firstAttribute="width" constant="280" id="VLN-PT-7uI"/>
+                                    <constraint firstAttribute="height" constant="53" id="amZ-JO-HXN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
