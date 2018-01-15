@@ -36,9 +36,9 @@
     return gameController;
 }
 
-- (void)gameTurnPlayed:(NSString *)turn withPlayer:(PlayerType)player
+- (void)gameTurnPlayedWithRow:(NSUInteger)row andColumn:(NSUInteger)column withPlayer:(PlayerType)player;
 {
-    [mApplicationModel.gameState setValue:[NSNumber numberWithInt:player] forKey:turn];
+    [mApplicationModel gameTurnPlayed:row column:column withPlayer:player];
     GameResult result = [self checkResult:player];
     
     if (self.delegate!=nil && [self.delegate respondsToSelector:@selector(gameResult:withPlayer:)]) {
@@ -48,18 +48,8 @@
 
 - (void)initiateNextComputerMove
 {
-    NSNumber * anyCell;
-    id randomKey;
-    NSArray* allKeys = [mApplicationModel.gameState allKeys];
-    randomKey = allKeys[arc4random_uniform((UInt32)[allKeys count])];
-    anyCell = mApplicationModel.gameState[randomKey];
-    
-    while (anyCell.integerValue != PlayerTypeNone) {
-        randomKey = allKeys[arc4random_uniform((UInt32)[allKeys count])];
-        anyCell = mApplicationModel.gameState[randomKey];
-    }
-    
-    [self gameTurnPlayed:randomKey withPlayer:PlayerTypeComputer];
+    NSDictionary * randomKeyDict = [mApplicationModel randomKeyForTurn];
+    [self gameTurnPlayedWithRow:[randomKeyDict[@"row"] integerValue] andColumn:[randomKeyDict[@"column"] integerValue] withPlayer:PlayerTypeComputer];
 }
 
 #pragma mark private method
@@ -70,7 +60,7 @@
         BOOL playerWon = YES;
         BOOL computerWon = YES;
         for (int k = 0; k<mApplicationModel.sizeBoard; k++) {
-            NSNumber *number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%d%d",p,k]];
+            NSNumber *number = [mApplicationModel gameStateForRow:p column:k];
             if (number.integerValue == PlayerTypeHuman) {
                 computerWon = NO;
             }
@@ -103,7 +93,7 @@
         BOOL playerWon = YES;
         BOOL computerWon = YES;
         for (int k = 0; k<mApplicationModel.sizeBoard; k++) {
-            NSNumber *number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%d%d",k,p]];
+            NSNumber *number = [mApplicationModel gameStateForRow:k column:p];
             if (number.integerValue == PlayerTypeHuman) {
                 computerWon = NO;
             }
@@ -135,7 +125,7 @@
     BOOL computerWon = YES;
     for (int p = 0; p<mApplicationModel.sizeBoard; p++) {// Checking Diagonals
 
-                NSNumber *number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%d%d",p,p]];
+                NSNumber *number = [mApplicationModel gameStateForRow:p column:p];
                 if (number.integerValue == PlayerTypeHuman) {
                     computerWon = NO;
                 }
@@ -168,7 +158,7 @@
     computerWon = YES;
     for (int p = 0; p<mApplicationModel.sizeBoard; p++) {// Checking Diagonals
         
-        NSNumber *number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%d%u",p,mApplicationModel.sizeBoard-p-1]];
+        NSNumber *number = [mApplicationModel gameStateForRow:p column:mApplicationModel.sizeBoard-p-1];
         if (number.integerValue == PlayerTypeHuman) {
             computerWon = NO;
         }

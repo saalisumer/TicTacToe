@@ -8,6 +8,12 @@
 
 #import "ApplicationModel.h"
 #import "Constants.h"
+#import "AIManager.h"
+@interface ApplicationModel ()
+{
+    NSMutableArray<NSMutableArray*> *state;
+}
+@end
 
 @implementation ApplicationModel
 
@@ -22,7 +28,6 @@
 
 -(void)initializeAll
 {
-    _gameState = [[NSMutableDictionary alloc]init];
 }
 
 -(void)setSizeBoard:(NSUInteger)sizeBoard
@@ -33,9 +38,16 @@
 
 - (void)initializeBoard:(NSUInteger)sizeBoard
 {
+    state = [NSMutableArray arrayWithCapacity:self.sizeBoard];
+    for(int i = 0;i < self.sizeBoard; i++)
+    {
+        [state addObject:[NSMutableArray arrayWithCapacity:self.sizeBoard]];
+    }
+    
     for (int k = 0; k<sizeBoard; k++) {
         for (int p =0; p<sizeBoard; p++) {
-            [_gameState setValue:[NSNumber numberWithInteger:PlayerTypeNone] forKey:[NSString stringWithFormat:@"%d%d",k,p]];
+            
+            state[k][p] = [NSNumber numberWithInteger:PlayerTypeNone];
         }
     }
 }
@@ -95,9 +107,7 @@
         }
         [userDefaults setValue:number forKey:kResultDraws];
         [userDefaults setValue:[NSNumber numberWithInteger:player] forKey:kKeyNextTurn];
-    }
-    
-    
+    }    
     [userDefaults synchronize];
 }
 
@@ -146,5 +156,30 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:[NSNumber numberWithInteger:player] forKey:kKeyNextTurn];
     [userDefaults synchronize];
+}
+
+- (NSNumber*)gameStateForRow:(NSUInteger)row column:(NSUInteger)column;
+{
+    return state[row][column];
+}
+
+- (void)gameTurnPlayed:(NSUInteger)row column:(NSUInteger)column withPlayer:(PlayerType)player
+{
+    state[row][column] = @(player);
+}
+
+-(NSDictionary*)randomKeyForTurn
+{
+//    NSUInteger randomKey1 = arc4random_uniform((UInt32)self.sizeBoard);
+//    NSUInteger randomKey2 = arc4random_uniform((UInt32)self.sizeBoard);
+//
+//    while ([state[randomKey1][randomKey2] integerValue] != PlayerTypeNone) {
+//        randomKey1 = arc4random_uniform((UInt32)self.sizeBoard);
+//        randomKey2 = arc4random_uniform((UInt32)self.sizeBoard);
+//    }
+//    return @{@"row":@(randomKey1),@"column":@(randomKey2)};
+    NSDictionary * action = [[AIManager sharedInstance ] minimaxDecision:state];
+//    NSDictionary * action = [[AIManager sharedInstance]minimaxDecision:state forPlayerType:PlayerTypeComputer];
+    return action;
 }
 @end

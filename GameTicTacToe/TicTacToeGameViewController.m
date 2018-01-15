@@ -84,7 +84,7 @@
     BoardCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBOARDCELLIdentifier forIndexPath:indexPath];
     long row = indexPath.item/mApplicationModel.sizeBoard;
     long column = indexPath.item%mApplicationModel.sizeBoard;
-    NSNumber * number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%lu%lu",row,column]];
+    NSNumber * number = [mApplicationModel gameStateForRow:row column:column];
     cell.playerType = (PlayerType)number.integerValue;
     return cell;
 }
@@ -123,7 +123,7 @@
 {
     long row = indexPath.item/mApplicationModel.sizeBoard;
     long column = indexPath.item%mApplicationModel.sizeBoard;
-    NSNumber * number = [mApplicationModel.gameState valueForKey:[NSString stringWithFormat:@"%lu%lu",row,column]];
+    NSNumber * number = [mApplicationModel gameStateForRow:row column:column];
     if (number.integerValue == PlayerTypeNone && mApplicationModel.nextTurnPlayer == PlayerTypeHuman) {
         return YES;
     }
@@ -134,7 +134,7 @@
 {
     long row = indexPath.item/mApplicationModel.sizeBoard;
     long column = indexPath.item%mApplicationModel.sizeBoard;
-    [mGameController gameTurnPlayed:[NSString stringWithFormat:@"%lu%lu",row,column] withPlayer:PlayerTypeHuman];
+    [mGameController gameTurnPlayedWithRow:row andColumn:column withPlayer:PlayerTypeHuman];
 }
 
 #pragma mark Interface orientation change

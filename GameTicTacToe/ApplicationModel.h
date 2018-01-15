@@ -11,11 +11,14 @@
 
 @interface ApplicationModel : NSObject
 @property (nonatomic, assign) NSUInteger sizeBoard;
-@property (nonatomic, strong) NSMutableDictionary * gameState;
 + (ApplicationModel* )sharedInstance;
 - (void)clearSession;
 - (void)logGameResult:(GameResult)result withLastTurn:(PlayerType)player;
 - (NSMutableDictionary*)getGameResultHistory;
 - (PlayerType)nextTurnPlayer;
 - (void)setNextPlayer:(PlayerType)player;
+
+- (NSNumber*)gameStateForRow:(NSUInteger)row column:(NSUInteger)column;
+- (void)gameTurnPlayed:(NSUInteger)row column:(NSUInteger)column withPlayer:(PlayerType)player;
+- (NSDictionary*)randomKeyForTurn;
 @end

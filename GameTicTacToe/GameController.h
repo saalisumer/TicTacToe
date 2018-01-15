@@ -7,21 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum PlayerType
-{
-    PlayerTypeNone = 0,
-    PlayerTypeHuman = 1,
-    PlayerTypeComputer = 2
-}PlayerType;
-
-typedef enum GameResult
-{
-    Won = 0,
-    Lost = 1,
-    Drawn = 2,
-    Continue = 3
-}GameResult;
+#import "Enums.h"
 
 @protocol GameDelegate <NSObject>
 
@@ -33,5 +19,5 @@ typedef enum GameResult
 @property (nonatomic, weak) id<GameDelegate> delegate;
 + (GameController*)sharedInstance;
 - (void)initiateNextComputerMove;
-- (void)gameTurnPlayed:(NSString *)turn withPlayer:(PlayerType)player;
+- (void)gameTurnPlayedWithRow:(NSUInteger)row andColumn:(NSUInteger)column withPlayer:(PlayerType)player;
 @end
